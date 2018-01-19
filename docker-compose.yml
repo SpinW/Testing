@@ -1,0 +1,8 @@
+run:
+   build: .
+   dockerfile: Dockerfile
+   volumes:
+      - /MATLAB/R2017b:/usr/local/MATLAB/from-host
+      - ${pwd}/log:/var/log/matlab
+   mac_address: EC:B1:D7:55:0B:CB
+   command: ["-r 'cmd_file;exit'"]
