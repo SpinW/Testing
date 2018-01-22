@@ -1,8 +1,46 @@
-run:
-   build: .
-   dockerfile: Dockerfile
+v2017b_ub:
+   extends: base_ub
    volumes:
       - /MATLAB/R2017b:/usr/local/MATLAB/from-host
-      - ${pwd}/log:/var/log/matlab
+
+v2015b_ub:
+   extends: base_ub
+   volumes:
+      - /MATLAB/Previous/R2015b:/usr/local/MATLAB/from-host
+
+v2014b_ub:
+   extends: base_ub
+   volumes:
+      - /MATLAB/Previous/R2014b:/usr/local/MATLAB/from-host
+
+base_ub:
+   build: .
+   dockerfile: DockerfileUbuntu
+   volumes:
+      - ./log:/var/log/matlab
    mac_address: EC:B1:D7:55:0B:CB
    command: ["-r 'cmd_file;exit'"]
+
+v2017b_cs:
+   extends: base_cs
+   volumes:
+      - /MATLAB/R2017b:/usr/local/MATLAB/from-host
+
+v2015b_cs:
+   extends: base_cs
+   volumes:
+      - /MATLAB/Previous/R2015b:/usr/local/MATLAB/from-host
+
+v2014b_cs:
+   extends: base_cs
+   volumes:
+      - /MATLAB/Previous/R2014b:/usr/local/MATLAB/from-host
+
+base_cs:
+   build: .
+   dockerfile: DockerfileCentos
+   volumes:
+      - ./log:/var/log/matlab
+   mac_address: EC:B1:D7:55:0B:CB
+   command: ["-r 'cmd_file;exit'"]
+
