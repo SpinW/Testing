@@ -31,5 +31,6 @@ WORKDIR /home/Testing
 
 # run the container like a matlab executable 
 ENV PATH="/usr/local/MATLAB/from-host/bin:${PATH}"
+ENV MATLAB_JAVA="/usr/local/MATLAB/from-host/sys/java/jre/glnxa64/jre/"
 ENTRYPOINT ["matlab", "-logfile /var/log/matlab/matlab.log"]
 
