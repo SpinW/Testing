@@ -7,6 +7,6 @@ log_dir = fullfile(filesep,'tmp','Report',d);
 if strcmpi(d(1:end-1),'r2017')
     tests.run('print',log_dir)
 else
-    tests.run('print',log_dir)
+    tests.run()
 end
 exit

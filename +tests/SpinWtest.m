@@ -12,6 +12,7 @@ classdef SpinWtest < matlab.unittest.TestCase
             else
                 mkdir(fullfile(log_dir,d))
             end
+            system(sprintf('chmod 777 %s',fullfile(log_dir,d)))
             % Add necessary SpinW files to path if they arent already there
             if exist('spinw', 'file') ~= 2
                 install_spinw('silent',true);
