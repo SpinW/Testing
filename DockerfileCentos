@@ -1,4 +1,4 @@
-# ward_s/spinw_testing
+# ward_s/spinw_testingCentoOS
 # 
 # Create an image with enough dependencies to support a mounted-in matlab.
 #
@@ -15,22 +15,32 @@ ENV container docker
 
 MAINTAINER Simon Ward <simon.ward@psi.ch>
 
-
 # Matlab dependencies
-RUN yum update && yum -y groupinstall 'Development Tools' \ 
+RUN yum -y update \
+    && yum -y groupinstall 'Development Tools' \ 
     && yum -y install libpng12-devel freetype-devel libXt \
-    blas-devel lapack-devel gcc-gfortran xorg-x11-server-Xorg git
+       blas-devel lapack-devel gcc-gfortran xorg-x11-server-Xorg git java-1.8.0-openjdk java-1.8.0-openjdk-headless
+
+# Setup the graphics
+# Replace 1000 with your user / group id
+RUN export uid=1000 gid=1000 && \
+    mkdir -p /home/developer && \
+    echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
+    echo "developer:x:${uid}:" >> /etc/group && \
+    chown ${uid}:${gid} -R /home/developer
+
+USER developer
+ENV HOME /home/developer
 
 # Get SpinW and create startup file 
-WORKDIR /home
+WORKDIR /home/developer
 RUN git clone https://github.com/SpinW/spinw.git
 RUN git clone https://github.com/SpinW/Testing.git
 
-WORKDIR /home/Testing
-# RUN echo "addpath(genpath('/home/spinw'))" > startup.m
+WORKDIR /home/developer/Testing
 
 # run the container like a matlab executable 
 ENV PATH="/usr/local/MATLAB/from-host/bin:${PATH}"
-ENV MATLAB_JAVA="/usr/local/MATLAB/from-host/sys/java/jre/glnxa64/jre/"
-ENTRYPOINT ["matlab", "-logfile /var/log/matlab/matlab.log"]
+ENV MATLAB_JAVA="/usr/java/latest/jre"
+ENTRYPOINT ["matlab", "-logfile /var/log/matlab/matlab.log -nosplash -nodesktop"]
 

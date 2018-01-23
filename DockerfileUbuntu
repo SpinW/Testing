@@ -1,4 +1,4 @@
-# ward_s/spinw_testing
+# ward_s/spinw_testingUbuntu
 # 
 # Create an image with enough dependencies to support a mounted-in matlab.
 #
@@ -23,9 +23,6 @@ RUN export uid=1000 gid=1000 && \
     echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
     echo "developer:x:${uid}:" >> /etc/group && \
     chown ${uid}:${gid} -R /home/developer
-
-#    echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer && \
-#    chmod 0440 /etc/sudoers.d/developer && \
 
 
 # Matlab dependencies

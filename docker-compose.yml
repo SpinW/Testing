@@ -44,6 +44,9 @@ base_cs:
    dockerfile: DockerfileCentos
    volumes:
       - ./log:/var/log/matlab
+      - /tmp/.X11-unix:/tmp/.X11-unix
+   environment:
+      - DISPLAY=${DISPLAY}
    mac_address: EC:B1:D7:55:0B:CB
    command: ["-r 'cmd_file;exit'"]
 
