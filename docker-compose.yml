@@ -18,6 +18,7 @@ base_ub:
    dockerfile: DockerfileUbuntu
    volumes:
       - ./log:/var/log/matlab
+      - ./Report:/tmp/Report
       - /tmp/.X11-unix:/tmp/.X11-unix
    environment:
       - DISPLAY=${DISPLAY}
@@ -44,6 +45,7 @@ base_cs:
    dockerfile: DockerfileCentos
    volumes:
       - ./log:/var/log/matlab
+      - ./Report:/tmp/Report
       - /tmp/.X11-unix:/tmp/.X11-unix
    environment:
       - DISPLAY=${DISPLAY}

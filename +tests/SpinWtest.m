@@ -5,11 +5,12 @@ classdef SpinWtest < matlab.unittest.TestCase
             % Cache the original path when we start
             testCase.addTeardown(@path, path);
             d = version; d = d(end-1:-1:end-6); d = d(end:-1:1);
-            if exist(fullfile(pwd,d),'dir') == 7
-               rmdir(fullfile(pwd,d)) 
-               mkdir(fullfile(pwd,d))
+            log_dir = fullfile(filesep,'tmp','Report');
+            if exist(fullfile(log_dir,d),'dir') == 7
+               rmdir(fullfile(log_dir,d)) 
+               mkdir(fullfile(log_dir,d))
             else
-                mkdir(fullfile(pwd,d))
+                mkdir(fullfile(log_dir,d))
             end
             % Add necessary SpinW files to path if they arent already there
             if exist('spinw', 'file') ~= 2
