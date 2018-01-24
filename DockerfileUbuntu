@@ -24,7 +24,6 @@ RUN export uid=1000 gid=1000 && \
     echo "developer:x:${uid}:" >> /etc/group && \
     chown ${uid}:${gid} -R /home/developer
 
-
 # Matlab dependencies
 RUN apt-get update && apt-get install -y \
     libpng12-dev libfreetype6-dev \
