@@ -1,5 +1,5 @@
 p = pwd;
-cd('~/spinw')
+cd('.../spinw')
 install_spinw('silent',true)
 cd(p)
 d = version; d = d(end-1:-1:end-6); d = d(end:-1:1);
