@@ -115,8 +115,7 @@ if __name__  == "__main__":
 
     deployFile = None
     if (len(sys.argv) == 2):
-        deployFile = sys.argv[2]
-
+        deployFile = sys.argv[1]
     interpreter = TransplantInterface(deployFile)
     tutorial1(interpreter)
     interpreter.exit()
