@@ -9,7 +9,7 @@ class TransplantInterface():
         self.isDeployed = False
         if session is None:
             if deployFile is not None:
-                self.matlab = transplant.Matlab(executable=deployFile)
+                self.matlab = transplant.Matlab(executable=deployFile,arguments=['-nodisplay'])
                 self.isDeployed = True
             else:
                 self.matlab = transplant.Matlab()
@@ -64,7 +64,7 @@ def tutorial1(interpreter):
                      baseMode = 'none')
 
         if interpreter.isDeployed:
-            matlab.waitforgui()
+            matlab.print(matlab.gcf,'-djpeg','S1.jpg')
         else:
             matlab.drawnow()
 
@@ -88,14 +88,14 @@ def tutorial1(interpreter):
         f = matlab.figure()
         matlab.sw_plotspec(FMSpec, mode = 1., colorbar = False)
         if interpreter.isDeployed:
-            matlab.waitforgui()
+            matlab.print(matlab.gcf,'-djpeg','M1.jpg')
         else:
             matlab.drawnow()
 
         f = matlab.figure()
         matlab.sw_plotspec(FMSpec, mode = 2)
         if interpreter.isDeployed:
-            matlab.waitforgui()
+            matlab.print(matlab.gcf,'-djpeg','M2.jpg')
         else:
             matlab.drawnow()
 
@@ -107,7 +107,7 @@ def tutorial1(interpreter):
 
         matlab.sw_plotspec(FMpowspec, dE=0.1)
         if interpreter.isDeployed:
-            matlab.waitforgui()
+            matlab.print(matlab.gcf,'-djpeg','Powspec.jpg')
         else:
             matlab.drawnow()
 
