@@ -63,10 +63,7 @@ def tutorial1(interpreter):
                      cellMode = 'none',
                      baseMode = 'none')
 
-        if interpreter.isDeployed:
-            matlab.print(matlab.gcf,'-djpeg','S1.jpg')
-        else:
-            matlab.drawnow()
+        matlab.drawnow()
 
         FMchain.genmagstr(mode = 'direct',
                           k = np.array([0., 0., 0.]),
@@ -87,17 +84,11 @@ def tutorial1(interpreter):
 
         f = matlab.figure()
         matlab.sw_plotspec(FMSpec, mode = 1., colorbar = False)
-        if interpreter.isDeployed:
-            matlab.print(matlab.gcf,'-djpeg','M1.jpg')
-        else:
-            matlab.drawnow()
+        matlab.drawnow()
 
         f = matlab.figure()
         matlab.sw_plotspec(FMSpec, mode = 2)
-        if interpreter.isDeployed:
-            matlab.print(matlab.gcf,'-djpeg','M2.jpg')
-        else:
-            matlab.drawnow()
+        matlab.drawnow()
 
         FMpowspec = FMchain.powspec(np.linspace(0, 2.5, 100),
                                     Evect = np.linspace(0, 4.5, 250),
@@ -106,10 +97,7 @@ def tutorial1(interpreter):
         FMpowspec = recursiveStruct(FMpowspec)
 
         matlab.sw_plotspec(FMpowspec, dE=0.1)
-        if interpreter.isDeployed:
-            matlab.print(matlab.gcf,'-djpeg','Powspec.jpg')
-        else:
-            matlab.drawnow()
+        matlab.drawnow()
 
 if __name__  == "__main__":
 
