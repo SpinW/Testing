@@ -69,6 +69,9 @@ function varargout = run(varargin)
         runner = matlab.unittest.TestRunner.withNoPlugins;
         runner.addPlugin(matlab.unittest.plugins.TestSuiteProgressPlugin)
         runner.addPlugin(matlab.unittest.plugins.FailureDiagnosticsPlugin)
+        tapFile = fullfile(getenv('WORKSPACE'),'unitTestReport','testResults.tap');
+        runner.addPlugin(matlab.unittest.plugins.TAPPlugin.producingOriginalFormat(matlab.unittest.plugins.ToFile(tapFile)))
+
         if ~islogical(p_folder)
             runner.addPlugin(matlab.unittest.plugins.TestReportPlugin.producingHTML(p_folder))
         end
