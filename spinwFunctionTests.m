@@ -6,7 +6,7 @@ classdef spinwFunctionTests < matlab.unittest.TestCase
         seed = 3142;
         relToll = 0.025;
         absToll = 1E-6;
-        refDir = fullfile(pwd, 'tutorialResuls');
+        refDir = fullfile(pwd, 'tutorialResults');
     end
     
     properties(Access = protected)
