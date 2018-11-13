@@ -6,7 +6,7 @@ classdef spinwFunctionTests < matlab.unittest.TestCase
         seed = 3142;
         relToll = 0.025;
         absToll = 1E-6;
-        refDir = fullfile(pwd, 'tutorialResults');
+        refDir = fullfile('.', 'tutorialResults');
     end
     
     properties(Access = protected)
@@ -18,7 +18,7 @@ classdef spinwFunctionTests < matlab.unittest.TestCase
             dir(fullfile(sw_rootdir, 'tutorials', 'publish', 'tutorial*.m')),...
             'UniformOutput', false);
 %         Incase we need to debug one tutorial.
-%         testFun = {fullfile(sw_rootdir, 'tutorials', 'publish', 'tutorial9.m')};
+%         testFun = {fullfile(sw_rootdir, 'tutorials', 'publish', 'tutorial8.m')};
         
     end
     
