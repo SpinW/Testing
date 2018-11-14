@@ -47,11 +47,20 @@ classdef spinwFunctionTests < matlab.unittest.TestCase
                warning('Making references as none exist')
             end
         end
+        
+        function turnOffWarnings(testCase)
+            warning('off','figure:JavaSupport');
+        end
     end
     
     methods (TestClassTeardown)
-        function closeAllFigs(testCase)
+        function closeAllFigs(testCase) %#ok<*MANU>
            close all
+           clearvars
+        end
+        
+        function turnOnWarnings(testCase)
+           warning('on','figure:JavaSupport'); 
         end
     end
     
@@ -71,7 +80,6 @@ classdef spinwFunctionTests < matlab.unittest.TestCase
                     try
                         [~] = webread(strtok(url,''')'));
                     catch ME
-                        ident = '';
                         switch ME.identifier
                             case 'MATLAB:webservices:HTTP404StatusCodeError'
                                 warning('WARNING! Remote content not found for tutorial %s', testFun);
@@ -140,7 +148,7 @@ function dataOut = extractData(axisIN)
 children = axisIN.Children;
 for i = 1:length(children)
     child = children(i);
-    dataOut(i).axisNo = i;
+    dataOut(i).axisNo = i; %#ok<*AGROW>
     switch get(child,'Type')
         case 'line'
             dataOut(i).data = [child.XData(:) child.YData(:)];
